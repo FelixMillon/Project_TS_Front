@@ -91,32 +91,26 @@
       >
         <li>
           <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-            About
+            Home
+          </a>
+        </li>
+
+        <li>
+          <a class="text-gray-700 transition hover:text-gray-700/75" href="/products">
+            Produits
           </a>
         </li>
 
         <li>
           <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-            Services
-          </a>
-        </li>
-
-        <li>
-          <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-            Projects
-          </a>
-        </li>
-
-        <li>
-          <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
-            Blog
+            Contact
           </a>
         </li>
       </ul>
     </div>
 
     <p class="mt-12 text-center text-sm text-gray-500 lg:text-right">
-      Copyright &copy; 2022. All rights reserved.
+      Copyright &copy; 2023. All rights reserved.
     </p>
   </div>
 </footer>
