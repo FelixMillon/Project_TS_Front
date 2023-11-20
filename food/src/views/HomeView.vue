@@ -5,7 +5,7 @@
 <template>
   <main id="home-main">
     <section class="hero">
-      <div class="container">
+      <div class="contain">
         <h1>Produits Bio Frais</h1>
         <p>Des aliments Bio comme vous en avez jamais vu. <span>Fabrication 100% française.</span></p>
         <a href="#" class="btn-primary">Qui sommes-nous ?</a>
