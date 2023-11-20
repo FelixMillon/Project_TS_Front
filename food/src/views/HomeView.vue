@@ -95,7 +95,7 @@
       </div>
     </div>
   </article>
-</section>
+ </section>
   </main>
 </template>
 
