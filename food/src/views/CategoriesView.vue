@@ -12,9 +12,9 @@
         <td v-for="category in categories" :key="category.category">
           <ul>
             <li v-for="product in category.products" :key="product.id_pro">
-              <a href="#">
+              <router-link :to="{ name: 'product', params: { id: product.id_pro } }">
                 {{ product.libelle }} - {{ product.prix }}€
-              </a>
+              </router-link>
             </li>
           </ul>
         </td>
@@ -37,14 +37,14 @@ export default {
 </script>
 
 <style scoped>
-  @import '../assets/tableStyles.css';
+@import '../assets/tableStyles.css';
 
-  a {
-    text-decoration: none;
-    cursor: pointer;
-  }
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
 
-  a:hover {
-    text-decoration: underline;
-  }
+a:hover {
+  text-decoration: underline;
+}
 </style>

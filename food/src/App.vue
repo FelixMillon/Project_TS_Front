@@ -7,7 +7,6 @@ import { RouterLink, RouterView } from 'vue-router'
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/categories">Catégories</RouterLink>
-        <RouterLink to="/products">Produits</RouterLink>
       </nav>
   </header>
 
@@ -29,7 +28,7 @@ nav {
   display: flex;
   justify-content: center; 
   align-items: center; 
-  height: 4rem;
+  height: 3.5rem;
 }
 
 nav a {
