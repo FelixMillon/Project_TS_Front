@@ -29,7 +29,7 @@ nav {
   display: flex;
   justify-content: center; 
   align-items: center; 
-  height: 4rem;
+  height: 3.5rem;
 }
 
 nav a {
