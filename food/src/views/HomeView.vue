@@ -3,6 +3,7 @@
 </script>
 
 <template>
+  <div id="MainContent"></div>
   <main id="home-main">
     <section class="hero">
       <div class="contain">
