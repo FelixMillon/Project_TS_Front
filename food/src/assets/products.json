@@ -1,0 +1,56 @@
+[
+    {
+        "id_pro": 1,
+        "libelle": "yaourt au fraise",
+        "description": "yaourt bio super pour la santé qui sent bon l'arnaque",
+        "prix": 0.90,
+        "date_achat": "03-11-2023",
+        "date_peremption": "03-12-2023",
+        "id_cat": 1
+    },
+    {
+        "id_pro": 2,
+        "libelle": "fraise",
+        "description": "fraise bio super pour la santé qui sent bon la fraise",
+        "prix": 1.90,
+        "date_achat": "03-11-2023",
+        "date_peremption": "12-11-2023",
+        "id_cat": 2
+    },
+    {
+        "id_pro": 3,
+        "libelle": "poire",
+        "description": "poire bio super pour la santé qui sent bon la poire",
+        "prix": 2.00,
+        "date_achat": "03-11-2023",
+        "date_peremption": "12-11-2023",
+        "id_cat": 2
+    },
+    {
+        "id_pro": 4,
+        "libelle": "fromage",
+        "description": "fromage pas bio super pour la santé qui sent bon le fromage",
+        "prix": 15.90,
+        "date_achat": "03-11-2023",
+        "date_peremption": "12-11-2023",
+        "id_cat": 1
+    },
+    {
+        "id_pro": 5,
+        "libelle": "carotte",
+        "description": "carotte bio super pour la santé qui sent bon la carotte",
+        "prix": 1.50,
+        "date_achat": "20-11-2023",
+        "date_peremption": "20-05-2024",
+        "id_cat": 2
+    },
+    {
+        "id_pro": 6,
+        "libelle": "lait",
+        "description": "lait bio bio super pour la santé qui sent bon la carottebio super pour la santé qui sent bon la carottebio super pour la santé qui sent bon la carottebio super pour la santé qui sent bon la carottebio super pour la santé qui sent bon la carottebio super pour la santé qui sent bon la carottebio super pour la santé qui sent bon la carottebio super pour la santé qui sent bon la carottebio super pour la santé qui sent bon la carottebio super pour la santé qui sent bon la carotte ",
+        "prix": 1.50,
+        "date_achat": "20-11-2023",
+        "date_peremption": "20-05-2024",
+        "id_cat": 1
+    }
+]
