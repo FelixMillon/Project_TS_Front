@@ -1,55 +1,47 @@
 <template>
-  <div class="product-details-container" v-if="productDetails">
-    <div class="product-card">
-      <div class="product-image">
-        <img src="../assets/imgs/la-defense-paris_0.jpg" alt="la d" />
-      </div>
-      <div class="product-info">
-        <h1>{{ productDetails.libelle }}</h1>
-        <p><strong>Prix:</strong> {{ productDetails.prix }}€</p>
-        <p><strong>Description:</strong> {{ productDetails.description }}</p>
-        <p><strong>Date d'achat:</strong> {{ productDetails.date_achat }}</p>
-        <p><strong>Date de péremption:</strong> {{ productDetails.date_peremption }}</p>
-        <router-link to="/categories" class="back-button">Retour aux catégories</router-link>
-      </div>
-    </div>
-  </div>
-  <div v-else>
+  <div v-if="loading">
     Chargement des détails du produit...
   </div>
+  <div v-else-if="productDetails" class="product-details-container">
+    <div class="product-card">
+    <p>salut</p>
+    </div>
+    <router-link to="/categories" class="back-button">
+      Retour aux catégories
+    </router-link>
+  </div>
+  <div v-else>
+    Le produit n'a pas été trouvé.
+  </div>
 </template>
-
 <script lang="ts">
-import products from '../assets/products.json';
-
-
-interface Product {
-  id_pro: number;
-  libelle: string;
-  description: string;
-  prix: number;
-  date_achat: string;
-  date_peremption: string;
-  id_cat: number;
-}
+import axios from 'axios';
 
 export default {
-  name: 'ProductsView',
+  name: 'ProductView',
   data() {
     return {
-      productId: typeof this.$route.params.id === 'string' ? this.$route.params.id : this.$route.params.id[0],
-      productDetails: null as Product | null
+      productId: null as string | null,
+      productDetails: null,
+      loading: true,
     };
   },
-  mounted() {
-    this.fetchProductDetails();
+  async created() {
+    this.productId = typeof this.$route.params.id === 'string' ? this.$route.params.id : this.$route.params.id[0];
+    await this.fetchProductDetails();
   },
   methods: {
-    fetchProductDetails() {
-      const id = parseInt(this.productId);
-      this.productDetails = products.find(product => product.id_pro === id) || null;
-    }
-  }
+    async fetchProductDetails() {
+      try {
+        const response = await axios.get(`http://localhost:3000/api/produit/get/${this.productId}`);
+        this.productDetails = response.data;
+      } catch (error) {
+        console.error('Error fetching product details:', error);
+      } finally {
+        this.loading = false;
+      }
+    },
+  },
 };
 </script>
 
@@ -86,7 +78,7 @@ export default {
 
 .product-info {
   padding: 20px;
-  flex: 1; /* Take the rest of the space available */
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -94,7 +86,7 @@ export default {
 
 h1 {
   margin-top: 0;
-  font-size: 2rem; /* Adjust size as needed */
+  font-size: 2rem;
 }
 
 .price {
@@ -132,16 +124,4 @@ h1 {
     width: 100%; /* Set to full width on smaller screens */
   }
 }
-
-/* .product-card {
-  display: flex;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  max-width: 900px;
-  margin: auto;
-} */
-
-
-
 </style>

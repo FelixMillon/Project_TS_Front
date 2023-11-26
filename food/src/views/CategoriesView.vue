@@ -1,40 +1,59 @@
 <template>
-  <table>
-    <thead>
-      <tr>
-        <th v-for="category in categories" :key="category.category">
-          {{ category.category }}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td v-for="category in categories" :key="category.category">
-          <ul>
-            <li v-for="product in category.products" :key="product.id_pro">
-              <router-link :to="{ name: 'product', params: { id: product.id_pro } }">
-                {{ product.libelle }} - {{ product.prix }}€
-              </router-link>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div v-if="loading">
+    Chargement des catégories...
+  </div>
+  <div v-else>
+    <h1>Liste des catégories</h1>
+    <div class="categories-container">
+      <div v-for="category in categories" :key="category.id" class="category">
+        <router-link :to="'/categorie/' + category.id">
+          <h2>{{ category.libelle }}</h2> 
+        </router-link>
+      </div>
+    </div>
+  </div>
 </template>
+
 
 <script lang="ts">
 import { useCategoriesLogic } from "../components/controllers/CategoriesController";
 
+interface Product {
+  id_pro: number;
+  libelle: string;
+  prix: number;
+  id_cat: number;
+}
+
+interface CategoryWithProducts {
+  id: number;
+  libelle: string; 
+  products: Product[];
+}
+
+
 export default {
-  name: 'CategorieVue',
+  name: 'CategoriesVue',
   data() {
     return {
-      categories: useCategoriesLogic()
+      categories: [] as CategoryWithProducts[],
+      loading: true,
     };
+  },
+  async created() {
+    try {
+      this.categories = await useCategoriesLogic();
+      console.log("cat", this.categories); 
+      
+    } catch (error) {
+      console.error('Error loading categories:', error);
+    } finally {
+      this.loading = false;
+    }
   },
 };
 </script>
+
 
 <style scoped>
 @import '../assets/tableStyles.css';
