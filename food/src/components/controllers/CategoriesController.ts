@@ -1,16 +1,11 @@
 import axios from 'axios';
+import type { Product } from './ProductsController';
 
-interface Category {
+export interface Category {
   id: number;
   libelle: string;
 }
 
-type Product = {
-  id_pro: number;
-  libelle: string;
-  prix: number;
-  id_cat: number;
-};
 
 export async function getCategories(): Promise<Category[]> {
   try {

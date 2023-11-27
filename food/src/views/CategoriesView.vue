@@ -17,13 +17,8 @@
 
 <script lang="ts">
 import { useCategoriesLogic } from "../components/controllers/CategoriesController";
+import type { Product } from "@/components/controllers/ProductsController";
 
-interface Product {
-  id_pro: number;
-  libelle: string;
-  prix: number;
-  id_cat: number;
-}
 
 interface CategoryWithProducts {
   id: number;

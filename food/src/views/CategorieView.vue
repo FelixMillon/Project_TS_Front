@@ -6,8 +6,8 @@
         </div>
         <div v-else>
             <ul>
-                <li v-for="product in products" :key="product.id_pro">
-                    <router-link :to="{ name: 'ProductView', params: { id: product.id_pro } }">
+                <li v-for="product in products" :key="product.id">
+                    <router-link :to="{ name: 'ProductView', params: { id: product.id } }">
                         {{ product.libelle }} - {{ product.prix }}€
                     </router-link>
                 </li>
@@ -16,8 +16,9 @@
     </div>
 </template>
 <script lang="ts">
+import { useCategoriesLogic } from '../components/controllers/CategoriesController';
 import { fetchProductsByCategory } from '../components/controllers/ProductsController';
-import type { Product } from '../components/controllers/ProductsController';
+import type { Product } from '@/components/controllers/ProductsController';
 
 export default {
     name: 'CategorieView',
@@ -30,21 +31,20 @@ export default {
     },
     async created() {
         this.loading = true;
-        const categoryParam = this.$route.params.category;
-        this.categoryName = Array.isArray(categoryParam) ? categoryParam[0] : categoryParam;
+        const routeParam = this.$route.params.id;
+        const categoryId = typeof routeParam === 'string' ? parseInt(routeParam) : parseInt(routeParam[0]);
 
-        try {
-            const categoryId = parseInt(this.categoryName);
-            if (!isNaN(categoryId)) {
-                this.products = await fetchProductsByCategory(categoryId);
-            } else {
-                console.error('Invalid category ID');
-            }
-        } catch (error) {
-            console.error('Error loading products:', error);
-        } finally {
-            this.loading = false;
+        if (!isNaN(categoryId)) {
+            const categories = await useCategoriesLogic();
+            const selectedCategory = categories.find(cat => cat.id === categoryId);
+            this.categoryName = selectedCategory ? selectedCategory.libelle : 'Catégorie Inconnue';
+
+            this.products = await fetchProductsByCategory(categoryId);
+        } else {
+            console.error('Invalid category ID');
         }
+
+        this.loading = false;
     }
 };
 </script>

@@ -4,7 +4,8 @@
   </div>
   <div v-else-if="productDetails" class="product-details-container">
     <div class="product-card">
-    <p>salut</p>
+      <h1>{{ productDetails.libelle }}</h1>
+      <p>Prix : {{ productDetails.prix }}€</p>
     </div>
     <router-link to="/categories" class="back-button">
       Retour aux catégories
@@ -15,32 +16,33 @@
   </div>
 </template>
 <script lang="ts">
-import axios from 'axios';
+import { getProductById } from '../components/controllers/ProductsController';
+import type { Product } from '../components/controllers/ProductsController';
 
 export default {
   name: 'ProductView',
   data() {
     return {
-      productId: null as string | null,
-      productDetails: null,
+      productId: null as number | null,
+      productDetails: null as Product | null,
       loading: true,
     };
   },
   async created() {
-    this.productId = typeof this.$route.params.id === 'string' ? this.$route.params.id : this.$route.params.id[0];
-    await this.fetchProductDetails();
-  },
-  methods: {
-    async fetchProductDetails() {
-      try {
-        const response = await axios.get(`http://localhost:3000/api/produit/get/${this.productId}`);
-        this.productDetails = response.data;
-      } catch (error) {
-        console.error('Error fetching product details:', error);
-      } finally {
-        this.loading = false;
+    this.loading = true;
+    const routeParam = this.$route.params.id;
+    this.productId = typeof routeParam === 'string' ? parseInt(routeParam) : parseInt(routeParam[0]);
+
+    if (!isNaN(this.productId)) {
+      this.productDetails = await getProductById(this.productId);
+      if (!this.productDetails) {
+        console.error('Produit non trouvé');
       }
-    },
+    } else {
+      console.error('Invalid product ID');
+    }
+
+    this.loading = false;
   },
 };
 </script>
