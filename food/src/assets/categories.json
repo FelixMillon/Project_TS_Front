@@ -2,11 +2,11 @@
     {
         "id_cat": 1,
         "libelle": "produits laitiers",
-        "description": "produits à base de laits machin chose"
+        "description": "produits a base de laits machin chose"
     },
     {
         "id_cat": 2,
-        "libelle": "fruits et légumes",
-        "description": "des supers fruits et des supers légumes"
+        "libelle": "fruits et legumes",
+        "description": "des supers fruits et des supers legumes"
     }
 ]

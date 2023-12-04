@@ -1,53 +1,52 @@
 <template>
-  <div class="flex flex-col items-center justify-center">
-    <form @submit="submit" style="width: 650px" class="flex flex-col space-y-5 px-5 py-14">
-      <input @change="fileSelected" type="file" accept="image/*"/>
-      <button type="submit">Submit</button>
-    </form>
+  <div class="d-flex justify-content-around">
+    <div class="row">
+      <div v-for="(produit, index) in produitsbycat" :key="index" class="col-md-4 mb-3">
+        <div class="card text-center">
+          <img :src="produit.url_image" class="card-img-top" width="25%" alt="Image 1">
+          <div class="card-body">
+            <h5 class="card-title">{{ produit.libelle }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ produit.prix }} euros</h6>
+            <p class="card-text">{{ produit.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</template>
 
+
+  
+</template>
+  
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { ref } from 'vue';
 import axios from 'axios';
 
-export default defineComponent({
-  setup() {
-    const file = ref<File | null>(null);
-    const caption = ref('');
-
-    const submit = async (event: Event) => {
-      event.preventDefault();
-
-      if (!file.value) {
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append('image', file.value);
-
-      await axios.post('http://localhost:3000/api/produit/add/', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-    };
-
-    const fileSelected = (event: Event) => {
-      const target = event.target as HTMLInputElement;
-      const selectedFile = target.files?.[0];
-
-      if (selectedFile) {
-        file.value = selectedFile;
-      }
-    };
-
+export default {
+  data() {
     return {
-      caption,
-      submit,
-      fileSelected,
-    };
+      produitsbycat: []
+    }
   },
-});
+  methods: {
+    async AllProducts() {
+      try {
+        // Effectuer une requête GET pour récupérer des données
+        await axios.get('http://localhost:3000/api/produit/get-all/').then(response => {
+          // Stockez les données dans la variable du composant
+          this.produitsbycat = response.data;
+        })
+
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données', error);
+      }
+    },
+    
+  },
+  created() {
+    this.AllProducts();
+  },
+}
 </script>
 
-<style scoped>
-</style>
+
