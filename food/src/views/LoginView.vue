@@ -186,7 +186,7 @@
 
                     <p class="mt-4 text-sm text-gray-500 sm:mt-0">
                     Already have an account?
-                    <a href="#" class="text-gray-700 underline">Log in</a>.
+                    <RouterLink to="/signin" class="text-gray-700 underline">Log in</RouterLink>.
                     </p>
                 </div>
                 </form>

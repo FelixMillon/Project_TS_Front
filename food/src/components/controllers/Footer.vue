@@ -110,7 +110,7 @@
     </div>
 
     <p class="mt-12 text-center text-sm text-gray-500 lg:text-right">
-      Copyright &copy; 2023. All rights reserved.
+      Copyright &copy; 2023. <br>Elone Maccioni - Ian Galmiche - Felix Millon - Mohamed Kerraz
     </p>
   </div>
 </footer>
