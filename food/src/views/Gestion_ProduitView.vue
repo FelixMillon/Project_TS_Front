@@ -42,29 +42,27 @@
       <button v-if="newupdate" @click="this.update()" class="btn btn-primary btn-lg" type="button" >Modifier le produit</button>
       <button @click="this.resetform()" class="btn btn-danger btn-lg" type="button" >Annuler</button>
     </div>
-
-
   </form>
 
 
   <div class="row">
     <h4 class="mb-3 text-center">Les produits</h4>
+    <Card
+      v-for="(produit, index) in produits"
+      :key="index"
+      class="col-md-4"
+      :data="produit"
+      @bouton-post-update="handlePostUpdate" 
+      @bouton-delete="handleDelete" 
+    />
+  </div>
 
-    <div v-for="(produit, index) in produits" :key="index" class="col-md-4">
-      <div class="card text-center">
-        <img :src="produit.url_image" class="card-img-top" width="100" alt="Image 1">
-        <div class="card-body">
-          <h5 class="card-title">{{ produit.libelle }}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{ produit.prix }} euros</h6>
-          <p class="card-text">{{ produit.description }}</p>
-          <div class="btn-group">
-            <button @click="this.post_update(produit.id)"  type="button" class="btn btn-primary">Modifier</button>
-            <button @click="this.delete(produit.id)"  type="button" class="btn btn-danger">Supprimer</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <div>
+    <button @click="this.switchPopUp">Ouvrir le Popup</button>
+    <Popup v-if="this.popupVisible" @closePopup="this.switchPopUp" :visible="this.popupVisible">
+      <h2>Contenu du Popup</h2>
+      <p>Ce texte peut être personnalisé en fonction de vos besoins.</p>
+    </Popup>
   </div>
 
 </template>
@@ -74,11 +72,17 @@
 <script lang="ts">
 import {ref } from 'vue';
 import axios from 'axios';
+import Card from '../components/Card.vue'
+import Popup from '../components/Popup.vue';
 
 export default {
+  components: {
+    Card,
+    Popup
+  },
   data() {
-
     return {
+      popupVisible: false,
       newupdate : false,
       produits : [],
       categories: [],
@@ -94,9 +98,23 @@ export default {
         id_cat: '',
         image: ref<File | null>(null),
       }
-    }
+    };
   },
   methods: {
+    switchPopUp() {
+      if(this.popupVisible){
+        this.popupVisible = false;
+      }else{
+        this.popupVisible = true;
+      }
+      console.log(this.popupVisible)
+    },
+    handlePostUpdate(id) {
+      this.post_update(id)
+    },
+    handleDelete(id) {
+      this.delete(id)
+    },
     async submit() {
       try{
         // Envoie du formulaire produit avec l'image
