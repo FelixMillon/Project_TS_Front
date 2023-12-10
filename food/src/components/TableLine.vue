@@ -6,11 +6,13 @@
       <div class="d-flex justify-content-around">
         <button @click="handle_post_update(cat.id)"  type="button" class="btn btn-primary" >modifier</button>
         <button @click="handle_delete(cat.id)"  type="button" class="btn btn-danger" >supprimer</button>
+        <RouterLink :to="'/gestion-produit/' + cat.id"  class="btn btn-primary">Voir les produits</RouterLink>
       </div>
     </td>
 </template>
 
 <script>
+import { RouterLink, RouterView } from 'vue-router'
 export default {
   props: {
     cat: {

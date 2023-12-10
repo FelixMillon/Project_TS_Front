@@ -20,7 +20,7 @@
         <th scope="col">#</th>
         <th scope="col">libelle</th>
         <th scope="col">description</th>
-        <th scope="col" class="text-center">Action</th>
+        <th scope="col" class="text-center">Actions</th>
       </tr>
     </thead>
     <tbody class="table-group-divider">

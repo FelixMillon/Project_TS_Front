@@ -62,6 +62,17 @@ class ProduitService {
             throw error;
         }
     }
+
+    //get produits par categorie
+    static async getProduitsByCat(id_cat: Number): Promise<Object[]> {
+        try {
+            const response = await axios.get(`http://localhost:3000/api/produit/get-by-cat/${id_cat}`);
+            return response.data;
+        } catch (error) {
+            console.error('Erreur lors de la réception des produits', error);
+            throw error;
+        }
+    }
 }
 
 export default ProduitService;
