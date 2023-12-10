@@ -1,12 +1,15 @@
 import axios from 'axios';
 
-
 class ProduitService {
     // insertion produit
     static async insertProduit(formulaire: Object): Promise<Object> {
         try {
             const response = await axios.post('http://localhost:3000/api/produit/add/', formulaire, {
-                headers: { 'Content-Type': 'multipart/form-data' },
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    "username": "marcelmarcel@gmail.com",
+                    "password": "Azerty@123"
+                },
             });
             return response.data;
         } catch (error) {
@@ -30,7 +33,11 @@ class ProduitService {
     static async updateProduit(formulaire: Object): Promise<Boolean> {
         try {
             const response = await axios.put('http://localhost:3000/api/produit/update/', formulaire, {
-                headers: { 'Content-Type': 'multipart/form-data' },
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    "username": "marcelmarcel@gmail.com",
+                    "password": "Azerty@123"
+                },
             });
             return response.data;
         } catch (error) {
@@ -43,7 +50,11 @@ class ProduitService {
     static async deleteProduit(id: number): Promise<Boolean> {
         try {
             const response = await axios.delete(`http://localhost:3000/api/produit/delete/${id}/`, {
-                headers: { 'Content-Type': 'multipart/form-data' },
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    "username": "marcelmarcel@gmail.com",
+                    "password": "Azerty@123"
+                },
             });
             return response.data;
         } catch (error) {

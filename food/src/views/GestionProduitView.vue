@@ -35,6 +35,7 @@ import Card from '../components/Card.vue'
 import Formulaire from '../components/FormulaireProduit.vue';
 import ProduitService from '../modele/produit.ts';
 import CategorieService from '../modele/categorie.ts';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -45,6 +46,7 @@ export default {
     return {
       popupVisible: false,
       newUpdate : false,
+      username : "",
       produits : [],
       categories: [],
       produit: {},
@@ -164,6 +166,9 @@ export default {
   created() {
     this.getProduits();
     this.getCategories();
+  },
+  computed: {
+    ...mapGetters(['getUserInfo']),
   },
 }
 

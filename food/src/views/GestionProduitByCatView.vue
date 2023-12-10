@@ -130,7 +130,8 @@ export default {
     // suppression produit
     async deleteProduit(id: number) {
       try {
-        await ProduitService.deleteProduit(id)
+        const response = await ProduitService.deleteProduit(id);
+        console.log(response);
       } catch (error) {
         console.error('Erreur lors de la récupération des données', error);
       }
