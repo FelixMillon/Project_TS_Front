@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CategoriesView from '../views/CategoriesView.vue'
+import GestionCategorieView from '../views/GestionCategorieView.vue'
 import HomeView from '../views/HomeView.vue'
-import Gestion_ProduitView from "../views/Gestion_ProduitView.vue";
+import GestionProduitView from "../views/GestionProduitView.vue";
 
 
 const router = createRouter({
@@ -15,12 +15,12 @@ const router = createRouter({
     {
       path: "/categories",
       name: "categories",
-      component: CategoriesView,
+      component: GestionCategorieView,
     },
     {
       path: "/gestion-produit/",
       name: "gestion-produit",
-      component: Gestion_ProduitView,
+      component: GestionProduitView,
     },
   ],
 });

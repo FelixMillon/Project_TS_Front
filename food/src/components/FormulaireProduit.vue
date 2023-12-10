@@ -1,14 +1,17 @@
 <template>
   <div class="popup-overlay" v-if="visible">
     <div class="popup-content">
-      <h4 class="mb-3 text-center">Ajouter un produit</h4>
+      <h4 v-if="newUpdate" class="mb-3 text-center">Modifier le produit</h4>
+      <h4 v-else class="mb-3 text-center">Ajouter un produit</h4>
       <form @submit.prevent="submit">
         <div class="row g-3">
           <div class="col-4">
-            <input type="text" class="form-control" v-model="form.libelle" id="productName" :placeholder="newUpdate ? this.produit.libelle : 'Nom du produit'" >
+            <input type="text" class="form-control" v-model="form.libelle" 
+            :placeholder="newUpdate ? this.produit.libelle : 'Nom du produit'" >
           </div>
           <div class="col-md-4">
-            <input type="number" class="form-control" v-model="form.prix" id="productPrice" :placeholder="newUpdate ? this.produit.prix : 'Prix'"  >
+            <input type="number" class="form-control" v-model="form.prix" 
+            :placeholder="newUpdate ? this.produit.prix : 'Prix'"  >
           </div>
           <div class="col-md-4">
             <select class="form-select" v-model="form.id_cat">
@@ -18,18 +21,18 @@
 
           </div>
           <div class="col-12">
-            <textarea class="form-control" v-model="form.description" id="productDescription"
+            <textarea class="form-control" v-model="form.description" 
             :placeholder="newUpdate ? this.produit.description : 'Description du produit'" rows="4"></textarea>
           </div>
 
           <div class="col-md-4">
             <label for="purchaseDate" class="form-label">Date d'achat</label>
-            <input type="date" class="form-control" v-model="form.date_achat" id="purchaseDate" >
+            <input type="date" class="form-control" v-model="form.date_achat" >
           </div>
 
           <div class="col-md-4">
             <label for="expirationDate" class="form-label">Date de péremption</label>
-            <input type="date" class="form-control" v-model="form.date_peremption" id="expirationDate"> 
+            <input type="date" class="form-control" v-model="form.date_peremption" > 
           </div>
 
 
@@ -96,13 +99,11 @@ export default {
     updateProduit() {
       this.form.id = this.produit.id
       this.$emit('updateProduit', this.form);
-      this.resetform();
-      this.$emit('closePopup');
+      this.closePopup();
     },
     insertProduit() {
       this.$emit('insertProduit', this.form);
-      this.resetform();
-      this.$emit('closePopup');
+      this.closePopup();
     },
   
     //reset formulaire
