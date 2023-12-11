@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 class ProduitService {
     // insertion produit
@@ -7,8 +8,8 @@ class ProduitService {
             const response = await axios.post('http://localhost:3000/api/produit/add/', formulaire, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    "username": "marcelmarcel@gmail.com",
-                    "password": "Azerty@123"
+                    "username": Cookies.get('username'),
+                    "password": Cookies.get('password')
                 },
             });
             return response.data;
@@ -35,8 +36,8 @@ class ProduitService {
             const response = await axios.put('http://localhost:3000/api/produit/update/', formulaire, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    "username": "marcelmarcel@gmail.com",
-                    "password": "Azerty@123"
+                    "username": Cookies.get('username'),
+                    "password": Cookies.get('password')
                 },
             });
             return response.data;
@@ -52,8 +53,8 @@ class ProduitService {
             const response = await axios.delete(`http://localhost:3000/api/produit/delete/${id}/`, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    "username": "marcelmarcel@gmail.com",
-                    "password": "Azerty@123"
+                    "username": Cookies.get('username'),
+                    "password": Cookies.get('password')
                 },
             });
             return response.data;

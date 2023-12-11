@@ -14,5 +14,5 @@ app.mount('#app')
 // par le stockage d'un jwt
 
 //creation d'un usertest
-ManageCookies.createCookie("username", "francisfrancis@gmail.com", 2);
+ManageCookies.createCookie("username", "admin@gmail.com", 1);
 ManageCookies.createCookie("password", "Azerty@123", 2);

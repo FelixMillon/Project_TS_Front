@@ -137,7 +137,7 @@ export default {
   position: fixed;
   top: 50%; /* Place le haut du pop-up au milieu de la fenêtre */
   left: 50%; /* Place la gauche du pop-up au milieu de la fenêtre */
-  transform: translate(-50%, -85%); /* Centre le pop-up verticalement et horizontalement */
+  transform: translate(-50%, -50%); /* Centre le pop-up verticalement et horizontalement */
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;

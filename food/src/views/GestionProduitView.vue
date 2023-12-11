@@ -1,4 +1,5 @@
 <template>
+
   <div class="row">
     <h4 class="mb-3 text-center">Les produits</h4>
     <button class="mb-3 text-center" @click="this.switchPopUp">Ajouter un produit</button>
@@ -70,9 +71,7 @@ export default {
         this.popupVisible = false;
         this.newUpdate = false;
       }else{
-        this.$nextTick(() => {
-          this.$refs.formulairePopup.$el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
+        this.scrollToCenter();
         this.popupVisible = true;
       }
     },
@@ -162,6 +161,23 @@ export default {
         console.error('Erreur lors de envois de la réception des produits', error);
       }
     },
+  
+    // scroll vers le centre
+    scrollToCenter() {
+    var centerX = Math.max(0, (window.innerWidth - window.innerWidth) / 2);
+    var centerY = Math.max(0, (window.innerHeight - window.innerHeight)) + Math.floor(this.produits.length / 3)*250;;
+    if (document.documentElement.scrollTo) {
+        document.documentElement.scrollTo({
+            left: centerX,
+            top: centerY,
+            behavior: 'smooth'
+        });
+    } else {
+        document.documentElement.scrollLeft = centerX;
+        document.documentElement.scrollTop = centerY;
+    }
+}
+
   },
   created() {
     this.getProduits();
