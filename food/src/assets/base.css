@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+
+:root {
+  /* --text-color: rgb(10, 10, 10);
+    --background-color: rgb(245, 245, 245); */
+  --font-1: "Raleway";
+  --text-color: rgb(100, 100, 100);
+  --background: aliceblue;
+  --nav-hover: rgba(0, 136, 255, 20%);
+  --button-color: aliceblue;
+  --button-hover: rgb(97, 160, 255);
+  --button-background: rgb(13, 111, 255)
+}
+
+* {
+  box-sizing: border-box;
+  font-family: var(--font-1);
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--background);
+  backdrop-filter: blur(50px);
+
+}
