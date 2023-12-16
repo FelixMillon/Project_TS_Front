@@ -108,7 +108,7 @@ export default {
     // Preparation du formulaire
     async prepareForm(id: number) {
       // Recuperation du produit demandé
-      this.getProduit(id)
+      await this.getProduit(id)
       this.getCategorie(this.produit.id_cat)
       this.newUpdate = true;
     },
