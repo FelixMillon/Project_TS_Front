@@ -72,7 +72,7 @@
                 </p>
                 </div>
 
-                <form action="#" class="mt-8 grid grid-cols-6 gap-6">
+            <form action="#" class="mt-8 grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-3">
                     <label
                     for="FirstName"
@@ -150,6 +150,78 @@
                     />
                 </div>
 
+            <div class="col-span-6 sm:col-span-3">
+                <label for="DateNaissance" class="block text-sm font-medium text-gray-700">
+                    Date de Naissance
+                </label>
+                <input
+                    type="text"
+                    id="DateNaissance"
+                    name="date_naissance"
+                    class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                <label for="Ville" class="block text-sm font-medium text-gray-700">
+                    Ville
+                </label>
+                <input
+                    type="text"
+                    id="Ville"
+                    name="ville"
+                    class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                <label for="CodePostal" class="block text-sm font-medium text-gray-700">
+                    Code Postal
+                </label>
+                <input
+                    type="text"
+                    id="CodePostal"
+                    name="cp"
+                    class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                <label for="Rue" class="block text-sm font-medium text-gray-700">
+                    Rue
+                </label>
+                <input
+                    type="text"
+                    id="Rue"
+                    name="rue"
+                    class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                <label for="NumeroRue" class="block text-sm font-medium text-gray-700">
+                    Numéro de Rue
+                </label>
+                <input
+                    type="text"
+                    id="NumeroRue"
+                    name="numrue"
+                    class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                />
+                </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <label for="Complement" class="block text-sm font-medium text-gray-700">
+                    Complément
+                </label>
+                <input
+                    type="text"
+                    id="Complement"
+                    name="complement"
+                    class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                />
+              </div>
+
                 <div class="col-span-6">
                     <label for="MarketingAccept" class="flex gap-4">
                     <input
@@ -189,7 +261,7 @@
                     <RouterLink to="/signin" class="text-gray-700 underline">Log in</RouterLink>.
                     </p>
                 </div>
-                </form>
+            </form>
             </div>
             </main>
         </div>
