@@ -19,7 +19,7 @@
                 </div>
                 <div class="btn-group text-center">
                     <button v-if="!newUpdate" @click="this.insertCategorie()" class="btn btn-primary btn-lg" type="button">Ajouter une catégorie</button>
-                    <button v-if="newUpdate" @click="this.updateCategorie()" class="btn btn-primary btn-lg" type="button">Modifier la catégorie</button>
+                    <button v-else @click="this.updateCategorie()" class="btn btn-primary btn-lg" type="button">Modifier la catégorie</button>
                     <button @click="this.closePopup()" class="btn btn-danger btn-lg" type="button">Annuler</button>
                 </div>
             </form>
