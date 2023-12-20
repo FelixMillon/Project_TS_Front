@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Cookies from 'js-cookie';
+import ManageCookies from './manageCookies.ts';
 
 class ProduitService {
     // insertion produit
@@ -8,14 +8,22 @@ class ProduitService {
             const response = await axios.post('http://localhost:3000/api/produit/add/', formulaire, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    "username": Cookies.get('username'),
-                    "password": Cookies.get('password')
+                    "token": ManageCookies.readCookie('myTStoken')
                 },
             });
             return response.data;
-        } catch (error) {
-            console.error('Erreur lors de l\'envoi des données produits', error);
-            throw error;
+        } catch (error: any) {
+            if (error.response && error.response.status === 403) {
+                alert("token invalide");
+                ManageCookies.deleteCookie('myTStoken')
+            } else {
+                console.error('error lors de la connexion', error);
+            }
+            if (error.response && error.response.status === 401) {
+                alert("Vous n'avez pas les droits pour executer cette action.");
+            } else {
+                console.error('error lors de la connexion', error);
+            }
         }
     }
 
@@ -36,14 +44,22 @@ class ProduitService {
             const response = await axios.put('http://localhost:3000/api/produit/update/', formulaire, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    "username": Cookies.get('username'),
-                    "password": Cookies.get('password')
+                    "token": ManageCookies.readCookie('myTStoken')
                 },
             });
             return response.data;
         } catch (error) {
-            console.error('Erreur lors de l\'envoi des données produits', error);
-            throw error;
+            if (error.response && error.response.status === 403) {
+                alert("token invalide");
+                ManageCookies.deleteCookie('myTStoken')
+            } else {
+                console.error('error lors de la connexion', error);
+            }
+            if (error.response && error.response.status === 401) {
+                alert("Vous n'avez pas les droits pour executer cette action.");
+            } else {
+                console.error('error lors de la connexion', error);
+            }
         }
     }
 
@@ -53,14 +69,22 @@ class ProduitService {
             const response = await axios.delete(`http://localhost:3000/api/produit/delete/${id}/`, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    "username": Cookies.get('username'),
-                    "password": Cookies.get('password')
+                    "token": ManageCookies.readCookie('myTStoken')
                 },
             });
             return response.data;
         } catch (error) {
-            console.error('Erreur lors de l\'envoi des données produits', error);
-            throw error;
+            if (error.response && error.response.status === 403) {
+                alert("token invalide");
+                ManageCookies.deleteCookie('myTStoken')
+            } else {
+                console.error('error lors de la connexion', error);
+            }
+            if (error.response && error.response.status === 401) {
+                alert("Vous n'avez pas les droits pour executer cette action.");
+            } else {
+                console.error('error lors de la connexion', error);
+            }
         }
     }
 

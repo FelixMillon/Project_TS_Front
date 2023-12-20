@@ -4,22 +4,22 @@ import { createStore } from 'vuex'
 const store = createStore({
     state () {
       return {
-        userinfo: {}
+        token: ""
       }
     },
     mutations: {
-        setUserInfo(state, userinfo) {
-          state.userinfo = userinfo;
+        setToken(state, token) {
+          state.token = token;
         },
     },
     actions: {
-        createUserInfo({ commit }, userinfo) {
-            commit('setUserInfo', userinfo);
+        createToken({ commit }, token) {
+            commit('setToken', token);
         }
       },
       getters: {
-        getUserInfo: (state) => {
-          return state ? state.userinfo : null;
+        getToken: (state) => {
+          return state.token;
         }
     },
 })

@@ -109,7 +109,7 @@ export default {
     async prepareForm(id: number) {
       // Recuperation du produit demandé
       await this.getProduit(id)
-      this.getCategorie(this.produit.id_cat)
+      await this.getCategorie(this.produit.id_cat)
       this.newUpdate = true;
     },
 

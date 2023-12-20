@@ -36,7 +36,6 @@ import Card from '../components/Card.vue'
 import Formulaire from '../components/FormulaireProduit.vue';
 import ProduitService from '../modele/produit.ts';
 import CategorieService from '../modele/categorie.ts';
-import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -164,33 +163,25 @@ export default {
   
     // scroll vers le centre
     scrollToCenter() {
-    var centerX = Math.max(0, (window.innerWidth - window.innerWidth) / 2);
-    var centerY = Math.max(0, (window.innerHeight - window.innerHeight)) + Math.floor(this.produits.length / 3)*250;;
-    if (document.documentElement.scrollTo) {
-        document.documentElement.scrollTo({
-            left: centerX,
-            top: centerY,
-            behavior: 'smooth'
-        });
-    } else {
-        document.documentElement.scrollLeft = centerX;
-        document.documentElement.scrollTop = centerY;
+      var centerX = Math.max(0, (window.innerWidth - window.innerWidth) / 2);
+      var centerY = Math.max(0, (window.innerHeight - window.innerHeight)) + Math.floor(this.produits.length / 3)*250;
+      if (document.documentElement.scrollTo) {
+          document.documentElement.scrollTo({
+              left: centerX,
+              top: centerY,
+              behavior: 'smooth'
+          });
+      } else {
+          document.documentElement.scrollLeft = centerX;
+          document.documentElement.scrollTop = centerY;
+      }
     }
-}
-
   },
   created() {
     this.getProduits();
     this.getCategories();
-  },
-  computed: {
-    ...mapGetters(['getUserInfo']),
-  },
+  }
 }
-
-
-
-
 
 </script>
 

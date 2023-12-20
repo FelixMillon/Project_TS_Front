@@ -3,6 +3,9 @@ import GestionCategorieView from '../views/GestionCategorieView.vue'
 import HomeView from '../views/HomeView.vue'
 import GestionProduitView from "../views/GestionProduitView.vue";
 import GestionProduitByCatView from "../views/GestionProduitByCatView.vue";
+import LogInView from "../views/LogInView.vue";
+import SignInView from "../views/SignInView.vue";
+import ManageCookies from "../modele/manageCookies.ts";
 
 
 const router = createRouter({
@@ -28,7 +31,26 @@ const router = createRouter({
       name: "gestion-produit-by-cat",
       component: GestionProduitByCatView,
     },
+    {
+      path: "/signin/",
+      name: "signin",
+      component: SignInView,
+    },
+    {
+      path: "/login/",
+      name: "login",
+      component: LogInView,
+    },
   ],
+});
+
+router.beforeEach((to: any, from: any, next: any) => {
+  const token = ManageCookies.readCookie('myTStoken');
+  if (!token && to.name !== 'login' && to.name !== 'signin') {
+    next({ name: 'signin' });
+  } else {
+    next();
+  }
 });
 
 export default router
