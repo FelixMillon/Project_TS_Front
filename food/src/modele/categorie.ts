@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Cookies from 'js-cookie';
+import ManageCookies from './manageCookies.ts';
 
 class CategorieService {
     // insertion categorie
@@ -7,16 +7,21 @@ class CategorieService {
         try {
             const response = await axios.post('http://localhost:3000/api/categorie_produit/add/', formulaire, {
                 headers: {
-                    "username": Cookies.get('username'),
-                    "password": Cookies.get('password')
+                    "token": ManageCookies.readCookie('myTStoken')
                 },
             });
             return response.data;
         } catch (error: any) {
-            if (error.response && error.response.status === 401) {
-                alert('Unauthorized');
+            if (error.response && error.response.status === 403) {
+                alert("token invalide");
+                ManageCookies.deleteCookie('myTStoken')
             } else {
-                console.error('Erreur lors de l\'envoi des données categorie_produits', error);
+                console.error('error lors de la connexion', error);
+            }
+            if (error.response && error.response.status === 401) {
+                alert("Vous n'avez pas les droits pour executer cette action.");
+            } else {
+                console.error('error lors de la connexion', error);
             }
         }
     }
@@ -37,16 +42,21 @@ class CategorieService {
         try {
             const response = await axios.put('http://localhost:3000/api/categorie_produit/update/', formulaire, {
                 headers: {
-                    "username": Cookies.get('username'),
-                    "password": Cookies.get('password')
+                    "token": ManageCookies.readCookie('myTStoken')
                 },
             });
             return response.data;
         } catch (error: any) {
-            if (error.response && error.response.status === 401) {
-                alert('Unauthorized');
+            if (error.response && error.response.status === 403) {
+                alert("token invalide");
+                ManageCookies.deleteCookie('myTStoken')
             } else {
-                console.error('Erreur lors de l\'envoi des données categorie_produits', error);
+                console.error('error lors de la connexion', error);
+            }
+            if (error.response && error.response.status === 401) {
+                alert("Vous n'avez pas les droits pour executer cette action.");
+            } else {
+                console.error('error lors de la connexion', error);
             }
         }
     }
@@ -56,16 +66,21 @@ class CategorieService {
         try {
             const response = await axios.delete(`http://localhost:3000/api/categorie_produit/delete/${id}/`, {
                 headers: {
-                    "username": Cookies.get('username'),
-                    "password": Cookies.get('password')
+                    "token": ManageCookies.readCookie('myTStoken')
                 },
             });
             return response.data;
         } catch (error: any) {
-            if (error.response && error.response.status === 401) {
-                alert('Unauthorized');
+            if (error.response && error.response.status === 403) {
+                alert("token invalide");
+                ManageCookies.deleteCookie('myTStoken')
             } else {
-                console.error('Erreur lors de l\'envoi des données categorie_produits', error);
+                console.error('error lors de la connexion', error);
+            }
+            if (error.response && error.response.status === 401) {
+                alert("Vous n'avez pas les droits pour executer cette action.");
+            } else {
+                console.error('error lors de la connexion', error);
             }
             return error;
         }

@@ -25,11 +25,9 @@ export default {
   },
   methods: {
     handle_post_update(id) {
-      // Émettre un événement personnalisé vers le composant parent
       this.$emit('bouton-post-update', id);
     },
     handle_delete(id) {
-      // Émettre un événement personnalisé vers le composant parent
       this.$emit('bouton-delete', id);
     },
   }
