@@ -4,11 +4,7 @@ class AdminService {
     // insertion produit
     static async insertAdmin(formulaire: Object): Promise<Object> {
         try {
-            const response = await axios.post('http://localhost:3000/api/admin/add/', formulaire, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
-            });
+            const response = await axios.post('http://localhost:3000/api/admin/add/', formulaire);
             return response.data;
         } catch (error) {
             console.error('Erreur lors de l\'envoi des données produits', error);

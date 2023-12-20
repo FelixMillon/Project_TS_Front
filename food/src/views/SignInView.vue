@@ -18,7 +18,7 @@
                 </div>
                 <div class="btn-group text-center">
                     <button @click="this.signIn()" class="btn btn-primary btn-lg" type="button">Sign in</button>
-                    <RouterLink to="/login/" class="btn btn-primary btn-lg">Log in</RouterLink>
+                    <RouterLink to="/login/" class="btn btn-primary btn-lg">Inscription</RouterLink>
                 </div>
             </form>
         </div>
@@ -48,7 +48,7 @@ export default {
             }else{
                 const token = await AdminService.signIn(this.email,hash);
                 ManageCookies.createCookie('myTStoken', token, 1)
-                this.token = ManageCookies.readCookie('myTStoken');
+                this.$store.dispatch('createToken', token);
                 router.push('/');
             }
         } catch (error) {
@@ -59,7 +59,6 @@ export default {
         const hashedPassword = sha256(password);
         return hashedPassword;
     }
-
   }
 }
 </script>

@@ -19,9 +19,9 @@
         <li><RouterLink to="/" class="nav-link px-2 link">F.A.Q.</RouterLink></li>
       </ul>
       <div class="col-md-3 text-end">
-        <button v-if="token != null" type="button" @click="this.logOut()" class="btn btn-outline-primary me-2">Se déconnecter</button>
+        <button v-if="this.token != null" type="button" @click="this.logOut()" class="btn btn-outline-primary me-2">Se déconnecter</button>
         <RouterLink v-else to="/signin/" class="btn btn-outline-primary me-2">Se connecter</RouterLink>
-        <button type="button" class="btn btn-primary">S'inscrire</button>
+        <RouterLink  to="/login/" class="btn btn-primary">S'inscrire</RouterLink>
       </div>
     </header>
   </div>
@@ -29,23 +29,31 @@
 </template>
 
 <script lang="ts">
-    
-    import ManageCookies from "../modele/manageCookies";
-    import router from '../router'; 
-    export default {
-        data() {
-            return {
-                token: ManageCookies.readCookie('myTStoken')
-            };
+  
+  import ManageCookies from "../modele/manageCookies";
+  import router from '../router'; 
+  export default {
+    data() {
+        return {
+            token: ManageCookies.readCookie('myTStoken')
+        };
+    },
+    methods: {
+        logOut() {
+            ManageCookies.deleteCookie('myTStoken');
+            this.token = null;
+            router.push('/signin/');
         },
-        methods: {
-            logOut() {
-                ManageCookies.deleteCookie('myTStoken');
-                this.token = ManageCookies.readCookie('myTStoken');
-                window.location.reload();
-                router.push('/signin/');
-                
-            },
-        }
-    };
+    },
+    computed: {
+      storedToken() {
+        return this.$store.getters.getToken;
+      },
+    },
+    watch: {
+      storedToken(newValue, oldValue) {
+        this.token = newValue;
+      },
+    }
+  };
 </script>
